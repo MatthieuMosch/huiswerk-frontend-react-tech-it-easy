@@ -6,6 +6,7 @@ import {bestSellingTv} from "./constants/inventory.js";
 import showInfo from "./helpers/showInfo.js";
 import makeEuro from "./helpers/makeEuro.js";
 import showDisplaySizes from "./helpers/showDisplaySizes.js";
+import showOptions from "./helpers/showOptions.js";
 
 function App() {
     // in StrictMode App() is run twice causing the console.log() to be shown twice
@@ -32,18 +33,30 @@ function App() {
                     </p>
                 </section>
                 <section className="best-selling-tv">
-                    <p>
-                        de best verkopende tv is: {showInfo(bestSellingTv)};
-                    </p>
-                    <p>
-                        de prijs is: {makeEuro(bestSellingTv.price)};
-                    </p>
-                    <p>
-                        beschikbare schermgroottes: {showDisplaySizes(bestSellingTv)};
-                    </p>
+                    <figure>
+                        <img src={bestSellingTv.sourceImg} alt="best selling tv"/>
+                    </figure>
+                    <figcaption>
+                        <p>
+                            {showInfo(bestSellingTv)}
+                        </p>
+                        <p>
+                            {makeEuro(bestSellingTv.price)}
+                        </p>
+                        <p>
+                            {showDisplaySizes(bestSellingTv)}
+                        </p>
+                        <p>
+                            {showOptions(bestSellingTv)}
+                        </p>
+                    </figcaption>
                 </section>
             </main>
-            <footer></footer>
+            <footer>
+                <button type="button" onClick={() => console.log("Meest verkocht eerst")}>Meest verkocht eerst</button>
+                <button type="button" onClick={() => console.log("Goedkoopste eerst")}>Goedkoopste eerst</button>
+                <button type="button" onClick={() => console.log("Meest geschikt voor sport eerst")}>Meest geschikt voor sport eerst</button>
+            </footer>
         </>
     )
 }
