@@ -1,3 +1,11 @@
+.stock-counts {
+    border: 4px dotted red;
+}
+
+.best-selling-tv {
+    border: 4px dotted darkgoldenrod;
+}
+
 .tvs-sold {
     color: green;
 }
