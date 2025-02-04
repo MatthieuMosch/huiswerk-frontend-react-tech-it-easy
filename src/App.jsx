@@ -10,6 +10,9 @@ import showDisplaySizes from "./helpers/showDisplaySizes.js";
 import showOptions from "./helpers/showOptions.js";
 // Opdracht week 2
 import showOutcomeInConsole from "./constants/oefenbestand.js";
+import checkIcon from "./assets/check.png";
+import nocheckIcon from "./assets/minus.png";
+
 // import listBrands from "./helpers/listBrands.js";
 
 function App() {
@@ -43,31 +46,44 @@ function App() {
                         <img src={bestSellingTv.sourceImg} alt="best selling tv"/>
                     </figure>
                     <figcaption>
-                        <p>
-                            {showInfo(bestSellingTv)}
-                        </p>
-                        <p>
-                            {makeEuro(bestSellingTv.price)}
-                        </p>
-                        <p>
-                            {showDisplaySizes(bestSellingTv)}
-                        </p>
-                        <p>
-                            {showOptions(bestSellingTv)}
-                        </p>
+                        <p>{showInfo(bestSellingTv)}</p>
+                        <p>{makeEuro(bestSellingTv.price)}</p>
+                        <p>{showDisplaySizes(bestSellingTv)}</p>
+                        <p>{showOptions(bestSellingTv)}</p>
                     </figcaption>
                 </section>
                 <section>
                     <ul>
                         {/*{listBrands()}*/}
-                        {inventory.map((tv) => <li key={tv.type}>{tv.brand}</li>)}
+                        {inventory.map((tv) => {
+                            return <li key={tv.type}>
+                                {tv.brand}
+                                <figure>
+                                    <img src={tv.sourceImg} alt="best selling tv"/>
+                                </figure>
+                                <figcaption>
+                                    <p>{showInfo(tv)}</p>
+                                    <p>{makeEuro(tv.price)}</p>
+                                    <p>{showDisplaySizes(tv)}</p>
+                                    <p>
+                                        {tv.options.map((option) =>
+                                            <><img src={(option.applicable ?
+                                                checkIcon :
+                                                nocheckIcon)} className="option-icon"/> {option.name}</>
+                                        )}
+                                    </p>
+                                </figcaption>
+                            </li>
+                        })};
                     </ul>
                 </section>
             </main>
             <footer>
                 <button type="button" onClick={() => console.log("Meest verkocht eerst")}>Meest verkocht eerst</button>
                 <button type="button" onClick={() => console.log("Goedkoopste eerst")}>Goedkoopste eerst</button>
-                <button type="button" onClick={() => console.log("Meest geschikt voor sport eerst")}>Meest geschikt voor sport eerst</button>
+                <button type="button" onClick={() => console.log("Meest geschikt voor sport eerst")}>Meest geschikt voor
+                    sport eerst
+                </button>
             </footer>
         </>
     )

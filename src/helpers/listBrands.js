@@ -6,6 +6,9 @@
 // why does this not work as an helper function?
 // how do i have to call this in App() to correctly display this list?
 
+// this helper function is not used right now
+// keeping it to fix it and use it in the future
+
 import {inventory} from "../constants/inventory.js";
 
 function listBrands() {

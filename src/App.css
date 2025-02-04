@@ -17,3 +17,12 @@
 .tvs-to-sell {
     color: red;
 }
+
+li {
+    list-style: none;
+    border: 4px dotted magenta;
+}
+
+.option-icon {
+    width: 20px;
+}
