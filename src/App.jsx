@@ -1,12 +1,16 @@
 import './App.css';
+// Opdrachten week 1
 import countSold from "./helpers/countSold.js";
 import countOriginalStock from "./helpers/countOriginalStock.js";
 import countToSell from "./helpers/countToSell.js";
-import {bestSellingTv} from "./constants/inventory.js";
+import {bestSellingTv, inventory} from "./constants/inventory.js";
 import showInfo from "./helpers/showInfo.js";
 import makeEuro from "./helpers/makeEuro.js";
 import showDisplaySizes from "./helpers/showDisplaySizes.js";
 import showOptions from "./helpers/showOptions.js";
+// Opdracht week 2
+import showOutcomeInConsole from "./constants/oefenbestand.js";
+// import listBrands from "./helpers/listBrands.js";
 
 function App() {
     // in StrictMode App() is run twice causing the console.log() to be shown twice
@@ -14,6 +18,8 @@ function App() {
     // disabled StrictMode for now. If it is required in the future then it can be enabled again in main.jsx
     console.log("tvs sold: " + countSold());
     console.log("tvs on original stock: " + countOriginalStock());
+
+    showOutcomeInConsole();
 
     return (
         <>
@@ -50,6 +56,12 @@ function App() {
                             {showOptions(bestSellingTv)}
                         </p>
                     </figcaption>
+                </section>
+                <section>
+                    <ul>
+                        {/*{listBrands()}*/}
+                        {inventory.map((tv) => <li key={tv.type}>{tv.brand}</li>)}
+                    </ul>
                 </section>
             </main>
             <footer>
