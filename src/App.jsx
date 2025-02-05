@@ -12,6 +12,7 @@ import showOptions from "./helpers/showOptions.js";
 import showOutcomeInConsole from "./constants/oefenbestand.js";
 import checkIcon from "./assets/check.png";
 import nocheckIcon from "./assets/minus.png";
+import soldoutIcon from "./assets/out-of-stock.png";
 
 // import listBrands from "./helpers/listBrands.js";
 
@@ -68,6 +69,15 @@ function App() {
                         inventory.sort((a,b) => b.refreshRate - a.refreshRate);
                         console.log(inventory);
                     }}>Meest geschikt voor sport eerst</button>
+                    <button type="button" onClick={() => {
+                        console.log("opdracht bonus-1 - grootste schermgrootte eerst");
+                        //this only works when the available sizes array is already sorted from low to high in the database
+                        //in this case invertory.availabeSizes is sorted
+                        //if the available sizes array is not sorted then the sort would contain a fori loop
+                        //to find the max size for a and b and compare those
+                        inventory.sort((a,b) => b.availableSizes[b.availableSizes.length-1] - a.availableSizes[a.availableSizes.length-1]);
+                        console.log(inventory);
+                    }}>Grootste schermgrootte eerst</button>
                 </section>
                 <section>
                     <ul>
@@ -76,14 +86,18 @@ function App() {
                             return <li key={tv.type}>
                                 {tv.brand}
                                 <figure>
-                                    <img key={tv.type} src={tv.sourceImg} alt="best selling tv"/>
+                                    <img key={tv.type}
+                                         src={(tv.sold === tv.originalStock ?
+                                             soldoutIcon :
+                                             tv.sourceImg
+                                         )}
+                                         alt={tv.name}/>
                                 </figure>
                                 <figcaption>
                                     <p>{showInfo(tv)}</p>
                                     <p>{makeEuro(tv.price)}</p>
                                     <p>{showDisplaySizes(tv)}</p>
-                                    <p>
-                                        {tv.options.map((option) =>
+                                    <p>{tv.options.map((option) =>
                                             <><img key={option.name}
                                                 src={(option.applicable ?
                                                     checkIcon :
