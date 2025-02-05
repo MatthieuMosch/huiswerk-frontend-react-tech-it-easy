@@ -52,6 +52,23 @@ function App() {
                         <p>{showOptions(bestSellingTv)}</p>
                     </figcaption>
                 </section>
+                <section className="sorting-buttons">
+                    <button type="button" onClick={() => {
+                        console.log("opdracht 3a - meest verkocht eerst");
+                        inventory.sort((a,b) => b.sold - a.sold);
+                        console.log(inventory);
+                    }}>Meest verkocht eerst</button>
+                    <button type="button" onClick={() => {
+                        console.log("opdracht 3b - goedkoopste eerst");
+                        inventory.sort((a,b) => a.price - b.price);
+                        console.log(inventory);
+                    }}>Goedkoopste eerst</button>
+                    <button type="button" onClick={() => {
+                        console.log("opdracht 3c - meest geschikt voor sport eerst");
+                        inventory.sort((a,b) => b.refreshRate - a.refreshRate);
+                        console.log(inventory);
+                    }}>Meest geschikt voor sport eerst</button>
+                </section>
                 <section>
                     <ul>
                         {/*{listBrands()}*/}
@@ -59,7 +76,7 @@ function App() {
                             return <li key={tv.type}>
                                 {tv.brand}
                                 <figure>
-                                    <img src={tv.sourceImg} alt="best selling tv"/>
+                                    <img key={tv.type} src={tv.sourceImg} alt="best selling tv"/>
                                 </figure>
                                 <figcaption>
                                     <p>{showInfo(tv)}</p>
@@ -67,9 +84,12 @@ function App() {
                                     <p>{showDisplaySizes(tv)}</p>
                                     <p>
                                         {tv.options.map((option) =>
-                                            <><img src={(option.applicable ?
-                                                checkIcon :
-                                                nocheckIcon)} className="option-icon"/> {option.name}</>
+                                            <><img key={option.name}
+                                                src={(option.applicable ?
+                                                    checkIcon :
+                                                    nocheckIcon)}
+                                                alt={option.applicable.toString()}
+                                                className="option-icon"/> {option.name} </>
                                         )}
                                     </p>
                                 </figcaption>
@@ -79,11 +99,7 @@ function App() {
                 </section>
             </main>
             <footer>
-                <button type="button" onClick={() => console.log("Meest verkocht eerst")}>Meest verkocht eerst</button>
-                <button type="button" onClick={() => console.log("Goedkoopste eerst")}>Goedkoopste eerst</button>
-                <button type="button" onClick={() => console.log("Meest geschikt voor sport eerst")}>Meest geschikt voor
-                    sport eerst
-                </button>
+                <h3>een leuke footer tekst of logo</h3>
             </footer>
         </>
     )

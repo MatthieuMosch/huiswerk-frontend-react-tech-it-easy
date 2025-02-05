@@ -18,11 +18,15 @@
     color: red;
 }
 
+.sorting-buttons{
+    border: 4px dotted grey;
+}
+
 li {
     list-style: none;
     border: 4px dotted magenta;
 }
 
 .option-icon {
-    width: 20px;
+    width: 10px;
 }
