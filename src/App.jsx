@@ -98,7 +98,7 @@ function App() {
                                     <p>{makeEuro(tv.price)}</p>
                                     <p>{showDisplaySizes(tv)}</p>
                                     <p>{tv.options.map((option) =>
-                                            <><img key={option.name}
+                                            <><img key={`{tv.type}}-{option.name}`}
                                                 src={(option.applicable ?
                                                     checkIcon :
                                                     nocheckIcon)}
